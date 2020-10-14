@@ -49,6 +49,9 @@ spec:
           {{- include "redash.envFrom" . | nindent 12 }}
           resources:
 {{ toYaml .Values.adhocWorker.resources | indent 12 }}
+{{- if .Values.server.sidecarContainers }}
+{{- toYaml .Values.server.sidecarContainers | nindent 8 }}
+{{- end }}
       volumes:
         - name: config
           configMap:

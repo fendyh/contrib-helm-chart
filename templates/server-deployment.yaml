@@ -429,6 +429,9 @@ spec:
             failureThreshold: 3
           resources:
 {{ toYaml .Values.server.resources | indent 12 }}
+{{- if .Values.server.sidecarContainers }}
+{{- toYaml .Values.server.sidecarContainers | nindent 8 }}
+{{- end }}
       volumes:
         - name: config
           configMap:
